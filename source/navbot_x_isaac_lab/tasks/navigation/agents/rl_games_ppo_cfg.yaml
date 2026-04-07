@@ -1,0 +1,8 @@
+params:
+  seed: 42
+  algo:
+    name: ppo
+  model:
+    name: continuous_a2c_logstd
+  network:
+    name: actor_critic

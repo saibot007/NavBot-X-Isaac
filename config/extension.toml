@@ -1,0 +1,8 @@
+[package]
+version = "0.1.0"
+category = "Simulation"
+title = "NavBot-X Isaac Lab"
+description = "Isaac Lab extension package for NavBot-X next-phase robotics RL work."
+authors = ["Atharva Sharma"]
+
+[dependencies]

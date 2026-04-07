@@ -1,0 +1,12 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "navbot-x-isaac-lab"
+version = "0.1.0"
+description = "Next-phase continuation of NavBot-X for Isaac Sim / Isaac Lab based robotics RL."
+authors = [
+  { name = "Atharva Sharma" }
+]
+requires-python = ">=3.10"
