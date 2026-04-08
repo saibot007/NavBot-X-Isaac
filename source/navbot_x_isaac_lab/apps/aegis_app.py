@@ -36,6 +36,16 @@ def build_parser() -> argparse.ArgumentParser:
         action="store_true",
         help="Enable automatic camera sequence during the demo.",
     )
+    parser.add_argument(
+        "--phase2-task-demo",
+        action="store_true",
+        help="Run Phase 2 checkpoint-based inspection task demo.",
+    )
+    parser.add_argument(
+        "--gesture-control-demo",
+        action="store_true",
+        help="Run rover using gesture command input file.",
+    )
     return parser
 
 
@@ -68,6 +78,8 @@ def main():
 
     from navbot_x_isaac_lab.demo.aegis_scene_builder import AegisSceneBuilder
     from navbot_x_isaac_lab.demo.route_animator import RouteAnimator
+    from navbot_x_isaac_lab.demo.inspection_task import InspectionTask
+    from navbot_x_isaac_lab.demo.gesture_controller import GestureController
 
     builder = AegisSceneBuilder(blueprint=blueprint)
     builder.build()
@@ -84,17 +96,32 @@ def main():
     print("[STATUS] Omni-wheel flagship configuration active.")
 
     route_iterator = None
-    if args.play_demo_route:
+    inspection_task = None
+    gesture_controller = None
+    gesture_command_file = "/tmp/navbot_x_gesture_command.txt"
+
+    if args.gesture_control_demo:
+        gesture_controller = GestureController("/World/AegisInspectionBay/NavBotXRover")
+        print("[GESTURE] Gesture control demo enabled.")
+
+    if args.play_demo_route and not args.phase2_task_demo:
         route_animator = RouteAnimator("/World/AegisInspectionBay/NavBotXRover")
         route_iterator = route_animator.inspection_route_alpha()
         print("[DEMO] Scripted Inspection Route Alpha enabled.")
+
+    if args.phase2_task_demo:
+        inspection_task = InspectionTask("/World/AegisInspectionBay/NavBotXRover")
+        print("[PHASE 2] Checkpoint-based inspection task enabled.")
 
     step_count = 0
     switched_to_route = False
     switched_to_top = False
 
     while simulation_app.is_running() and step_count < args.max_steps:
-        if route_iterator is not None:
+        if inspection_task is not None:
+            inspection_task.update()
+
+        elif route_iterator is not None:
             try:
                 next(route_iterator)
             except StopIteration:
@@ -120,6 +147,26 @@ def main():
             elif step_count > 520 and not switched_to_top:
                 builder.set_active_camera(top_camera)
                 switched_to_top = True
+
+        if gesture_controller is not None:
+            try:
+                with open(gesture_command_file, "r") as f:
+                    command = f.read().strip()
+                if not command:
+                    command = "STOP"
+            except FileNotFoundError:
+                command = "STOP"
+
+            gesture_controller.update(command)
+
+        elif inspection_task is not None:
+            inspection_task.update()
+
+        elif route_iterator is not None:
+            try:
+                next(route_iterator)
+            except StopIteration:
+                route_iterator = None        
         
 
         simulation_app.update()

@@ -1,8 +1,6 @@
 # NavBot-X Isaac Lab
 
-NavBot-X Isaac Lab is the next-phase continuation of my robotics reinforcement learning journey, extending beyond my earlier Gazebo-based navigation project into a more advanced simulation, cinematic robotics demo, and Physical AI direction.
-
-This repository is intentionally built as a **flagship robotics simulation project** from the beginning. The goal is not only to create meaningful technical infrastructure, but also to build a project that looks premium, futuristic, and portfolio-ready at first glance.
+A flagship robotics simulation project built in Isaac Sim / Isaac Lab around a premium autonomous inspection rover, cinematic environment design, structured inspection behavior, and future reinforcement learning plus gesture-control expansion.
 
 ---
 
@@ -15,169 +13,114 @@ This repository is intentionally built as a **flagship robotics simulation proje
 
 ---
 
+## Project Preview
+
+### Hero Camera View
+![Hero Camera View](media/images/hero cam.png)
+
+### Route Camera View
+![Route Camera View](media/images/route.png)
+
+### Top View
+![Top View](media/images/top view.png)
+
+### Gesture Control Demo
+![Gesture Control Demo](media/images/gesture.png)
+
+---
+
 ## Overview
 
-**Aegis Inspection Bay** is a futuristic industrial inspection facility where the **NavBot-X Rover** performs monitoring and traversal runs through a clean, high-tech environment.
+NavBot-X Isaac Lab is the next-phase continuation of my robotics reinforcement learning journey, moving beyond my earlier Gazebo-based navigation work into a more advanced Isaac Sim, Isaac Lab, Physical AI, and premium simulation direction.
 
-The project is designed around a layered development strategy:
+This project is intentionally built as a flagship portfolio project from the start, with emphasis on:
 
-- **Phase 1:** flagship visual identity, simulator-side environment build, premium rover concept, cinematic scripted demo
-- **Phase 2:** task logic, control structure, richer scene interaction, inspection workflow expansion
-- **Phase 3:** reinforcement learning environments, advanced autonomy, embodied intelligence extensions, gesture-based interaction, and broader Physical AI experimentation
-
----
-
-## Why This Repository Exists
-
-This is a **new repository**, separate from my earlier Gazebo / ROS 2 navigation project, because:
-
-- the previous project already reached a strong milestone
-- this new stack deserves its own identity
-- the Isaac Sim / Isaac Lab direction is more advanced and visually ambitious
-- presentation quality and recruiter-facing clarity matter
-
-This repo is intended to represent a **next-generation flagship simulation project**, not just another continuation branch.
+- premium black, blue, and gold visual identity
+- cinematic environment presentation
+- custom rover concept design
+- structured inspection behavior
+- future reinforcement learning integration
+- gesture-control expansion
 
 ---
 
-## Long-Term Technology Direction
+## Core Features
 
-This project is being developed with the following long-term stack direction in mind:
-
-- Isaac Sim
-- Isaac Lab
-- Omniverse workflows
-- Newton physics directions
-- robotics simulation pipelines
-- reinforcement learning environments
-- NVIDIA NeMo Curator and data-centric AI tooling
-- physics-informed learning directions
-- future gesture-based or interactive control modes
-- broader Physical AI experimentation
-
----
-
-## Phase 1 Scope
-
-Phase 1 focuses on establishing the project’s premium visual and simulator-side foundation:
-
-- premium project identity
-- clean repository architecture
-- Aegis Inspection Bay scene
-- NavBot-X Rover flagship concept design
-- omnidirectional / mecanum-style rover wheel styling
+### Phase 1
+- Aegis Inspection Bay simulator scene
 - cinematic camera system
-- scripted Inspection Route Alpha demo
-- strong GitHub and portfolio presentation baseline
+- premium colored lighting rig
+- flagship NavBot-X Rover concept
+- omnidirectional / mecanum-style wheel design
+- scripted cinematic route demo
+
+### Phase 2
+- checkpoint-based inspection task
+- task state machine
+- rover controller abstraction
+- checkpoint status visualization
+- checkpoint-specific scan behavior
+- structured simulator-side behavior foundation for RL
+
+### Gesture Control Direction
+- separate gesture pipeline from Isaac runtime
+- webcam-based hand input
+- MediaPipe-based gesture recognition
+- command mapping for:
+  - `FORWARD`
+  - `BACKWARD`
+  - `LEFT`
+  - `RIGHT`
+  - `STOP`
 
 ---
 
-## Phase 1 Highlights
-
-Current Phase 1 features include:
-
-- custom **Aegis Inspection Bay** simulator scene
-- premium black / blue / gold visual language
-- flagship **NavBot-X Rover** concept with omnidirectional-style wheel modules
-- cinematic camera workflow:
-  - Hero camera
-  - Route camera
-  - Top camera
-- scripted demo route for **Inspection Route Alpha**
-- colored lighting rig for a premium futuristic presentation
-- Isaac Sim application entry point for scene launch and cinematic playback
-
----
-
-## Current Scene Direction
-
-The visual design of **Aegis Inspection Bay** is built around:
-
-- dark premium floor surfaces
-- clean route markings
-- cyan / electric-blue guidance accents
-- warm gold contrast highlights
-- compact but intentional industrial scene composition
-- high readability for cinematic camera views
-- controlled visual complexity for an 8 GB laptop GPU
-
----
-
-## NavBot-X Rover Design Direction
-
-The **NavBot-X Rover** is designed as a premium inspection rover concept with:
-
-- matte black base body
-- graphite-black paneling
-- restrained gold trim accents
-- electric blue and cyan lighting language
-- omnidirectional / mecanum-style wheel modules
-- compact sensor mast and premium product silhouette
-- cinematic product-demo presentation
-
----
-
-## Current Repository Structure
+## Repository Structure
 
 ```text
 navbot-x-isaac-lab/
 ├── README.md
 ├── .gitignore
+├── LICENSE
 ├── pyproject.toml
 ├── setup.py
-├── LICENSE
 ├── config/
 │   └── extension.toml
 ├── source/
 │   └── navbot_x_isaac_lab/
 │       ├── __init__.py
 │       ├── apps/
-│       │   ├── __init__.py
 │       │   └── aegis_app.py
 │       ├── demo/
-│       │   ├── __init__.py
 │       │   ├── aegis_scene_builder.py
+│       │   ├── checkpoint_manager.py
+│       │   ├── gesture_controller.py
+│       │   ├── gesture_input.py
 │       │   ├── inspection_mission.py
+│       │   ├── inspection_task.py
 │       │   ├── layout_blueprint.py
+│       │   ├── rover_controller.py
 │       │   ├── route_animator.py
-│       │   └── scene_config.py
-│       ├── tasks/
-│       │   ├── __init__.py
-│       │   └── navigation/
-│       │       ├── __init__.py
-│       │       ├── navigation_env.py
-│       │       ├── navigation_env_cfg.py
-│       │       └── agents/
-│       │           ├── __init__.py
-│       │           └── rl_games_ppo_cfg.yaml
+│       │   ├── scene_config.py
+│       │   └── status_visualizer.py
 │       ├── robots/
-│       │   ├── __init__.py
-│       │   └── mobile_base/
-│       │       └── __init__.py
+│       ├── tasks/
 │       └── utils/
-│           ├── __init__.py
-│           └── paths.py
 ├── scripts/
 │   ├── run_aegis_app.py
 │   ├── play.py
 │   ├── sanity_check.py
 │   └── train.py
-├── assets/
-│   ├── usd/
-│   ├── configs/
-│   ├── scenes/
-│   └── robots/
+├── tools/
+│   └── gesture_writer.py
 ├── docs/
 │   └── architecture/
-│       ├── mission_route_alpha.md
-│       ├── phase1_plan.md
-│       ├── scene_spec.md
-│       └── visual_identity.md
+├── assets/
 ├── media/
-│   ├── demo_clips/
 │   ├── images/
+│   ├── videos/
 │   ├── renders/
-│   └── videos/
+│   └── demo_clips/
 ├── logs/
 ├── checkpoints/
 └── experiments/
