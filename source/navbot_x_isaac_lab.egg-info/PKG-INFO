@@ -1,0 +1,6 @@
+Metadata-Version: 2.4
+Name: navbot-x-isaac-lab
+Version: 0.1.0
+Summary: Next-phase continuation of NavBot-X for Isaac Sim / Isaac Lab based robotics RL.
+Author: Atharva Sharma
+Requires-Python: >=3.10
