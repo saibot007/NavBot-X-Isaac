@@ -16,7 +16,7 @@ A flagship robotics simulation project built in Isaac Sim / Isaac Lab around a p
 ## Project Preview
 
 ### Hero Camera View
-![Hero Camera View](media/images/hero cam.png)
+![Hero Camera View](media/images/hero.png)
 
 ### Route Camera View
 ![Route Camera View](media/images/route.png)
