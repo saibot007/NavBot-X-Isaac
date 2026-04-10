@@ -1,2 +1,4 @@
 from .navigation_env import NavigationEnv
 from .navigation_env_cfg import NavigationEnvCfg
+from .inspection_rl_env import InspectionRLEnv
+from .inspection_rl_env_cfg import InspectionRLEnvCfg
