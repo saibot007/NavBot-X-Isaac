@@ -1,0 +1,15 @@
+twist_mux:
+  ros__parameters:
+
+    use_stamped: false
+
+    topics:
+      autonomy:
+        topic: /cmd_vel_auto
+        timeout: 0.5
+        priority: 10
+
+      gesture:
+        topic: /cmd_vel_gesture
+        timeout: 0.5
+        priority: 100

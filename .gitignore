@@ -30,3 +30,4 @@ media/demo_clips/*
 cache/
 _cache/
 kit/
+/v3-nova/models/*.task
